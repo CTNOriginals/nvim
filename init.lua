@@ -687,7 +687,13 @@ require('lazy').setup({
                 --    https://github.com/pmizio/typescript-tools.nvim
                 --
                 -- But for many setups, the LSP (`ts_ls`) will work just fine
-                -- ts_ls = {},
+                ts_ls = {
+                    -- cmd = {
+                    --     'node',
+                    --     vim.fn.stdpath('data') .. '/mason/packages/typescript-language-server/node_modules/.bin/typescript-language-server',
+                    --     '--stdio'
+                    -- }
+                },
 
                 
 
@@ -906,10 +912,7 @@ require('lazy').setup({
         end,
     },
 
-    { "pmizio/typescript-tools.nvim",
-      dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-      opts = {},
-    },
+    
 
     -- Highlight todo, notes, etc in comments
     { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
@@ -997,7 +1000,7 @@ require('lazy').setup({
     --    This is the easiest way to modularize your config.
     --
     --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-    -- { import = 'custom.plugins' },
+    { import = 'custom.plugins' },
     --
     -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
     -- Or use telescope!
