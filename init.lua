@@ -1,5 +1,7 @@
 -- vim.o.shell = '""'
 
+require 'ctninit'
+
 --[[
 
 =====================================================================
@@ -259,11 +261,6 @@ require('lazy').setup({
     --
     -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
     --
-    opts = {
-        rocks = {
-            enabled = false,
-        },
-    },
 
     -- Alternatively, use `config = function() ... end` for full control over the configuration.
     -- If you prefer to call `setup` explicitly, use:
@@ -690,8 +687,9 @@ require('lazy').setup({
                 --    https://github.com/pmizio/typescript-tools.nvim
                 --
                 -- But for many setups, the LSP (`ts_ls`) will work just fine
-                ts_ls = {},
-                --
+                -- ts_ls = {},
+
+                
 
                 lua_ls = {
                     -- cmd = { ... },
@@ -906,6 +904,11 @@ require('lazy').setup({
             -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
             vim.cmd.colorscheme 'tokyonight-night'
         end,
+    },
+
+    { "pmizio/typescript-tools.nvim",
+      dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+      opts = {},
     },
 
     -- Highlight todo, notes, etc in comments
