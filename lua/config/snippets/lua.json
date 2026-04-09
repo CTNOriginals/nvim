@@ -1,0 +1,1 @@
+{"snip_test":{"body":["-- this is a test case: $1 opt: ${2|foo,bar|}","$0","-- end test ${3:success!}"],"prefix":"snip_test"}}
