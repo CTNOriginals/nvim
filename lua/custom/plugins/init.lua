@@ -7,7 +7,8 @@ return {
 	require("custom.plugins.scissors"),
 	require("custom.plugins.sessions"),
 	require("custom.plugins.markdown-preview"),
+	-- require("custom.plugins.ray-x-go"),
 
 	-- Config
-	require("custom.plugins.config"),
+	-- require("custom.plugins.config"),
 }
