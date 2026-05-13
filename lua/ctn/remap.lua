@@ -18,6 +18,10 @@ vim.keymap.set("i", "<M-l>", "<Esc><Esc>gta")
 vim.keymap.set("t", "<M-h>", "<C-\\><C-n>gTa")
 vim.keymap.set("t", "<M-l>", "<C-\\><C-n>gta")
 
+-- move tab
+vim.keymap.set("n", "<MC-h>", ":tabmove -1<CR>")
+vim.keymap.set("n", "<MC-l>", ":tabmove +1<CR>")
+
 -- Select word boundry
 vim.keymap.set("n", "<leader>v", "bve", { desc = "[V]issually select word" })
 vim.keymap.set("v", "<leader>", "vbve", { desc = "Select word" })
