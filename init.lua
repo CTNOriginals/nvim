@@ -5,7 +5,7 @@ vim.o.wrap = false
 vim.o.sidescroll = 5
 
 vim.o.foldmethod = "indent"
-vim.o.foldlevelstart = 1
+vim.o.foldlevelstart = 4
 
 -- Set <space> as the leader key
 -- See `:help mapleader`
