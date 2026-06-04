@@ -274,7 +274,7 @@ require("lazy").setup({
 			spec = {
 				{ "<leader>s", group = "[S]earch" },
 				{ "<leader>t", group = "[T]oggle" },
-				{ "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
+				{ "<leader>g", group = "[G]it Hunk", mode = { "n", "v" } },
 			},
 		},
 	},
@@ -979,6 +979,7 @@ require("lazy").setup({
 vim.cmd([[colorscheme ayu-dark]])
 
 require("config.telescope.delete_buffers")
+require("telescope").load_extension("harpoon")
 
 require("luasnip").setup({
 	store_selection_keys = "<Tab>",

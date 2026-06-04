@@ -24,7 +24,7 @@ vim.keymap.set("n", "<MC-l>", ":tabmove +1<CR>")
 
 -- Select word boundry
 vim.keymap.set("n", "<leader>v", "bve", { desc = "[V]issually select word" })
-vim.keymap.set("v", "<leader>", "vbve", { desc = "Select word" })
+vim.keymap.set("v", "<leader>v", "vbve", { desc = "Select word" })
 vim.keymap.set("i", "<C-e>", "<Esc>bvei", { desc = "Select word" })
 
 -- Scroll viewport with cursor inplace
