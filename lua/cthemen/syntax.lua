@@ -32,7 +32,7 @@ function M.setup(c)
 	hl("PreCondit", { fg = c.preproc })
 
 	hl("Type", { fg = c.type_fg })
-	hl("StorageClass", { fg = c.keyword_storage, bold = true })
+	hl("StorageClass", { fg = c.keyword_declaration, bold = true })
 	hl("Structure", { fg = c.type_fg })
 	hl("Typedef", { fg = c.type_fg })
 

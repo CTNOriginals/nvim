@@ -56,7 +56,7 @@ M.info = "#75beff"
 M.hint = "#75beff"
 
 M.keyword = "#ec4068"
-M.keyword_declaration = "#569cd6"
+M.keyword_declaration = "#226cee"
 M.keyword_storage = "#7ec8a0"
 M.string = "#ce9178"
 M.function_fg = "#dcdcaa"
