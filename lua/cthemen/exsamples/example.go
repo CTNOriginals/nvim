@@ -43,21 +43,21 @@ func (h *SUserHandler) Handle(ctx context.Context, w http.ResponseWriter, r *htt
 		multi-line
 		comment block
 	*/
-	id := r.URL.Query().Get("id")
+	var id = r.URL.Query().Get("id")
 	if id == "" {
 		return fmt.Errorf("missing id: %w", ErrBadRequest)
 	}
 
-	n := 42
-	pi := 3.14159
-	hex := 0xFF
-	bin := 0b1010
-	big := 1e10
-	neg := -273
+	var n = 42
+	var pi = 3.14159
+	var hex = 0xFF
+	var bin = 0b1010
+	var big = 1e10
+	var neg = -273
 
 	switch r.Method {
 	case http.MethodGet:
-		data, err := h.fetchUser(ctx, id)
+		var data, err = h.fetchUser(ctx, id)
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			return err
@@ -78,7 +78,7 @@ func (h *SUserHandler) Handle(ctx context.Context, w http.ResponseWriter, r *htt
 		w.WriteHeader(http.StatusMethodNotAllowed)
 	}
 
-	ch := make(chan int, 10)
+	var ch = make(chan int, 10)
 	go func() {
 		for i := 0; i < 10; i++ {
 			ch <- i * 2
@@ -94,13 +94,13 @@ func (h *SUserHandler) Handle(ctx context.Context, w http.ResponseWriter, r *htt
 }
 
 func (h *SUserHandler) fetchUser(ctx context.Context, id string) (*SUser, error) {
-	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
+	var ctx, cancel = context.WithTimeout(ctx, 5*time.Second)
 	defer cancel()
 
-	row := h.db.QueryRowContext(ctx, "SELECT id, name, email FROM users WHERE id = $1", id)
+	var row = h.db.QueryRowContext(ctx, "SELECT id, name, email FROM users WHERE id = $1", id)
 
-	user := &SUser{}
-	err := row.Scan(&user.ID, &user.Name, &user.Email)
+	var user = &SUser{}
+	var err = row.Scan(&user.ID, &user.Name, &user.Email)
 	if err == sql.ErrNoRows {
 		return nil, ErrNotFound
 	}
@@ -108,9 +108,9 @@ func (h *SUserHandler) fetchUser(ctx context.Context, id string) (*SUser, error)
 }
 
 func (h *SUserHandler) saveUser(ctx context.Context, user *SUser) error {
-	query := `INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id`
+	var query = `INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id`
 	// raw string with backtick
-	err := h.db.QueryRowContext(ctx, query, user.Name, user.Email).Scan(&user.ID)
+	var err = h.db.QueryRowContext(ctx, query, user.Name, user.Email).Scan(&user.ID)
 	if err != nil {
 		return fmt.Errorf("save failed: %w", err)
 	}
@@ -119,20 +119,20 @@ func (h *SUserHandler) saveUser(ctx context.Context, user *SUser) error {
 }
 
 func main() {
-	cfg := &SConfig{
+	var cfg = &SConfig{
 		Port:  8080,
 		Env:   "development",
 		Debug: false,
 		Rate:  0.95,
 	}
 
-	mux := http.NewServeMux()
-	handler := NewUserHandler(cfg)
+	var mux = http.NewServeMux()
+	var handler = NewUserHandler(cfg)
 	mux.HandleFunc("GET /users", func(w http.ResponseWriter, r *http.Request) {
 		handler.Handle(context.Background(), w, r)
 	})
 
-	addr := fmt.Sprintf(":%d", cfg.Port)
+	var addr = fmt.Sprintf(":%d", cfg.Port)
 	fmt.Printf("listening on %s\n", addr)
 	log.Fatal(http.ListenAndServe(addr, mux))
 }
