@@ -37,20 +37,17 @@ func NewUserHandler(cfg *SConfig) *SUserHandler {
 	}
 }
 
+// this is a single-line comment
+/*
+multi-line
+comment block
+*/
 func (h *SUserHandler) Handle(ctx context.Context, writer http.ResponseWriter, reader *http.Request) error {
-	// this is a single-line comment
-	/*
-		multi-line
-		comment block
-	*/
 	var id = reader.URL.Query().Get("id")
 	var n = 42
 	var pi = 3.14159
 	var hex = 0xFF
-	var bin = 0b1010
-	var big = 1e10
-	var neg = -273
-	_ = []any{n, pi, hex, bin, big, neg}
+	_ = []any{n, pi, hex}
 
 	switch reader.Method {
 	case http.MethodGet:
