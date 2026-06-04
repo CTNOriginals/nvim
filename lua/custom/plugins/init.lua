@@ -4,11 +4,13 @@
 -- See the kickstart.nvim README for more information
 return {
 	require("custom.plugins.ayu"),
-	require("custom.plugins.scissors"),
+	-- require("custom.plugins.scissors"),
 	require("custom.plugins.sessions"),
 	require("custom.plugins.markdown-preview"),
 	require("custom.plugins.plenary"),
 	require("custom.plugins.harpoon"),
+	require("custom.plugins.treesitter-context"),
+	require("custom.plugins.github-nvim-theme"),
 
 	-- require("custom.plugins.ray-x-go"),
 

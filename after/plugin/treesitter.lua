@@ -1,5 +1,6 @@
+local treesitter = require("nvim-treesitter")
 -- Ensure parsers are installed (async, no-op if present)
-require("nvim-treesitter").install({
+treesitter.install({
 	"bash",
 	"c",
 	"diff",
@@ -30,6 +31,22 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.api.nvim_set_keymap("n", "<leader>`", "<cmd>Inspect<cr>", {
+vim.api.nvim_set_keymap("n", "<leader>ts", "", {
 	noremap = true,
+	desc = "[T]ree[S]itter",
 })
+vim.api.nvim_set_keymap("n", "<leader>tsi", "<cmd>Inspect<cr>", {
+	noremap = true,
+	desc = "[T]ree[S]itter [I]nspect",
+})
+vim.api.nvim_set_keymap("n", "<leader>tst", "<cmd>InspectTree<cr>", {
+	noremap = true,
+	desc = "[T]ree[S]itter Inspect [T]ree",
+})
+
+-- vim.api.nvim_create_autocmd("User", {
+-- pattern = "TSUpdate",
+-- callback = function()
+-- 	require("nvim-treesitter.parsers").go.install_info.queries = true
+-- end,
+-- })
