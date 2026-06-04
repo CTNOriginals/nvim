@@ -94,7 +94,7 @@ func (h *SUserHandler) Handle(ctx context.Context, w http.ResponseWriter, r *htt
 }
 
 func (h *SUserHandler) fetchUser(ctx context.Context, id string) (*SUser, error) {
-	var ctx, cancel = context.WithTimeout(ctx, 5*time.Second)
+	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
 	defer cancel()
 
 	var row = h.db.QueryRowContext(ctx, "SELECT id, name, email FROM users WHERE id = $1", id)
@@ -136,3 +136,9 @@ func main() {
 	fmt.Printf("listening on %s\n", addr)
 	log.Fatal(http.ListenAndServe(addr, mux))
 }
+
+// var
+// const
+// type
+// struct
+// func ()
