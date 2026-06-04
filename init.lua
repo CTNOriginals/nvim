@@ -962,7 +962,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		vim.api.nvim_set_hl(0, "@lsp.type.variable.go", {})
 		vim.api.nvim_set_hl(0, "@lsp.type.keyword.go", {})
-		-- vim.api.nvim_set_hl(0, "@lsp.type.namespace.go", { fg = "#00ff00" })
 		-- vim.lsp.semantic_tokens.enable(false, { bufnr = args.buf })
 	end,
 })

@@ -1,3 +1,6 @@
+-- so treesitter finds queries/go/*.scm
+vim.opt.rtp:append(vim.fn.stdpath("config") .. "/lua/cthemen")
+
 local c = require("cthemen.palette")
 
 require("cthemen.highlights").setup(c)
