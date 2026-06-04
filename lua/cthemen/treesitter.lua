@@ -127,7 +127,7 @@ function M.setup(c)
 
 	hl("@keyword.import", { fg = c.preproc })
 	hl("@keyword.storage", { fg = c.keyword_declaration, bold = true })
-	hl("@keyword.repeat", { fg = c.keyword })
+	hl("@keyword.repeat", { fg = c.keyword, bold = true })
 	hl("@keyword.debug", { fg = c.special })
 	hl("@keyword.directive", { fg = c.preproc })
 	hl("@keyword.directive.define", { fg = c.preproc })
