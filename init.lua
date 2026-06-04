@@ -892,7 +892,7 @@ require("lazy").setup({
 	require("kickstart.plugins.indent_line"),
 	-- require 'kickstart.plugins.lint',
 	require("kickstart.plugins.autopairs"),
-	require("kickstart.plugins.neo-tree"),
+	-- require("kickstart.plugins.neo-tree"),
 	-- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
 	-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
@@ -959,8 +959,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	pattern = "*.go",
-	callback = function()
+	callback = function(args)
 		vim.api.nvim_set_hl(0, "@lsp.type.variable.go", {})
+		vim.api.nvim_set_hl(0, "@lsp.type.keyword.go", {})
+		-- vim.lsp.semantic_tokens.enable(false, { bufnr = args.buf })
 	end,
 })
 

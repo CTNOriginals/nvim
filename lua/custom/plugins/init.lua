@@ -3,7 +3,7 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-	require("custom.plugins.ayu"),
+	-- require("custom.plugins.ayu"),
 	-- require("custom.plugins.scissors"),
 	require("custom.plugins.sessions"),
 	require("custom.plugins.markdown-preview"),
