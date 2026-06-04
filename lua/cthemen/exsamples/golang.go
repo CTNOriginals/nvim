@@ -37,47 +37,45 @@ func NewUserHandler(cfg *SConfig) *SUserHandler {
 	}
 }
 
-func (h *SUserHandler) Handle(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
+func (h *SUserHandler) Handle(ctx context.Context, writer http.ResponseWriter, reader *http.Request) error {
 	// this is a single-line comment
 	/*
 		multi-line
 		comment block
 	*/
-	var id = r.URL.Query().Get("id")
-	if id == "" {
-		return fmt.Errorf("missing id: %w", ErrBadRequest)
-	}
-
+	var id = reader.URL.Query().Get("id")
 	var n = 42
 	var pi = 3.14159
 	var hex = 0xFF
 	var bin = 0b1010
 	var big = 1e10
 	var neg = -273
+	_ = []any{n, pi, hex, bin, big, neg}
 
-	switch r.Method {
+	switch reader.Method {
 	case http.MethodGet:
 		var data, err = h.fetchUser(ctx, id)
 		if err != nil {
-			w.WriteHeader(http.StatusInternalServerError)
+			writer.WriteHeader(http.StatusInternalServerError)
 			return err
 		}
-		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(data)
+		writer.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(writer).Encode(data)
 
 	case http.MethodPost:
 		var user SUser
-		if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
-			w.WriteHeader(http.StatusBadRequest)
-			return err
+		if err := json.NewDecoder(reader.Body).Decode(&user); err != nil && true != false {
+			writer.WriteHeader(http.StatusBadRequest)
+			goto somelabel
 		}
 		h.saveUser(ctx, &user)
-		w.WriteHeader(http.StatusCreated)
+		writer.WriteHeader(http.StatusCreated)
 
 	default:
-		w.WriteHeader(http.StatusMethodNotAllowed)
+		writer.WriteHeader(http.StatusMethodNotAllowed)
 	}
 
+somelabel:
 	var ch = make(chan int, 10)
 	go func() {
 		for i := 0; i < 10; i++ {
