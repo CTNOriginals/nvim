@@ -868,7 +868,6 @@ require("lazy").setup({
 			-- - sd'   - [S]urround [D]elete [']quotes
 			-- - sr)'  - [S]urround [R]eplace [)] [']
 			require("mini.surround").setup()
-
 			-- Simple and easy statusline.
 			--  You could remove this setup call if you don't like it,
 			--  and try some other statusline plugin
@@ -892,34 +891,8 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter",
 		branch = "main",
 		build = ":TSUpdate",
+		lazy = false,
 		main = "nvim-treesitter.config", -- Sets main module to use for opts
-		-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-		-- opts = {
-		-- 	ensure_installed = {
-		-- 		"bash",
-		-- 		"c",
-		-- 		"diff",
-		-- 		"html",
-		-- 		"lua",
-		-- 		"luadoc",
-		-- 		"markdown",
-		-- 		"markdown_inline",
-		-- 		"query",
-		-- 		"vim",
-		-- 		"vimdoc",
-		-- 		"go",
-		-- 	},
-		-- 	-- Autoinstall languages that are not installed
-		-- 	auto_install = true,
-		-- 	highlight = {
-		-- 		enable = true,
-		-- 		-- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-		-- 		--  If you are experiencing weird indenting issues, add the language to
-		-- 		--  the list of additional_vim_regex_highlighting and disabled languages for indent.
-		-- 		additional_vim_regex_highlighting = { "ruby" },
-		-- 	},
-		-- 	indent = { enable = true, disable = { "ruby" } },
-		-- },
 		-- There are additional nvim-treesitter modules that you can use to interact
 		-- with nvim-treesitter. You should go explore a few and see what interests you:
 		--
@@ -976,29 +949,10 @@ require("lazy").setup({
 	},
 })
 
-vim.cmd([[colorscheme ayu-dark]])
+-- vim.cmd([[colorscheme ayu-dark]])
 
 require("config.telescope.delete_buffers")
 require("telescope").load_extension("harpoon")
-
-require("luasnip").setup({
-	store_selection_keys = "<Tab>",
-})
-require("luasnip.loaders.from_vscode").lazy_load({
-	paths = { vim.fn.stdpath("config") .. "/lua/config/snippets" },
-})
-
-require("blink.cmp").setup({
-	sources = {
-		providers = {
-			snippets = {
-				opts = {
-					search_paths = { vim.fn.stdpath("config") .. "/lua/config/snippets" },
-				},
-			},
-		},
-	},
-})
 
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*.go",
