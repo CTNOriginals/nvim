@@ -21,7 +21,6 @@ vim.keymap.set("n", "<M-i>", hpcall("ui", "nav_prev"), {
 
 return {
 	"ThePrimeagen/harpoon",
-	config = function() end,
 	opts = {
 		tabline = false,
 	},

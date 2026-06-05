@@ -559,7 +559,12 @@ require("lazy").setup({
 						and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
 					then
 						map("<leader>th", function()
-							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+							if vim.fn.has("nvim-0.11") == 1 then
+								local enable = vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })
+								vim.lsp.inlay_hint.enable(not enable)
+							else
+								vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+							end
 						end, "[T]oggle Inlay [H]ints")
 					end
 				end,
@@ -992,7 +997,9 @@ require("lazy").setup({
 -- vim.cmd([[colorscheme ayu-dark]])
 
 require("config.telescope.delete_buffers")
-require("telescope").load_extension("harpoon")
+pcall(function()
+	require("telescope").load_extension("harpoon")
+end)
 
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*.go",

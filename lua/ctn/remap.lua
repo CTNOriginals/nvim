@@ -22,7 +22,7 @@ vim.keymap.set("t", "<M-l>", "<C-\\><C-n>gta")
 vim.keymap.set("n", "<MC-h>", ":tabmove -1<CR>")
 vim.keymap.set("n", "<MC-l>", ":tabmove +1<CR>")
 
--- Select word boundry
+-- Select word boundary
 vim.keymap.set("n", "<leader>v", "bve", { desc = "[V]issually select word" })
 vim.keymap.set("v", "<leader>v", "vbve", { desc = "Select word" })
 vim.keymap.set("i", "<C-e>", "<Esc>bvei", { desc = "Select word" })

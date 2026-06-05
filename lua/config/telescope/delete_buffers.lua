@@ -1,9 +1,9 @@
 -- source: https://github.com/nvim-telescope/telescope.nvim/issues/621#issuecomment-2094652982
 
-local builtin = require("telescope.builtin")
-local action_state = require("telescope.actions.state")
-
 vim.keymap.set("n", "<C-e>", function()
+	local builtin = require("telescope.builtin")
+	local action_state = require("telescope.actions.state")
+
 	builtin.buffers({
 		initial_mode = "normal",
 		attach_mappings = function(prompt_bufnr, map)

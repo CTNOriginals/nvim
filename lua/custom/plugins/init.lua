@@ -11,6 +11,7 @@ return {
 	require("custom.plugins.harpoon"),
 	require("custom.plugins.treesitter-context"),
 	require("custom.plugins.github-nvim-theme"),
+	require("custom.plugins.diffview"),
 
 	-- require("custom.plugins.ray-x-go"),
 
