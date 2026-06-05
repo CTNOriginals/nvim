@@ -66,8 +66,8 @@ function M.setup(c)
 
 	hl("Title", { fg = c.tag, bold = true })
 
-	hl("Visual", { bg = c.selection })
-	hl("VisualNOS", { bg = c.selection })
+	hl("Visual", { bg = c.visual_selection })
+	hl("VisualNOS", { bg = c.visual_selection })
 
 	hl("WarningMsg", { fg = c.warn })
 	hl("WildMenu", { bg = c.list_active, fg = c.dropdown_fg })
