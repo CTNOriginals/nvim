@@ -12,6 +12,15 @@ import (
 
 const AppName = "demo"
 
+type Bitmask uint
+
+const (
+	Info Bitmask = 1 << iota
+	Debug
+	Warn
+	Error
+)
+
 var version = "1.0.0"
 
 type SConfig struct {
@@ -37,17 +46,17 @@ func NewUserHandler(cfg *SConfig) *SUserHandler {
 	}
 }
 
-// this is a single-line comment
-/*
-multi-line
-comment block
-*/
+// NOTE: this is a single-line comment
+// TODO: something to be done
+// BUG: squash Identifierit now!!
+// TEST: askdjf
 func (h *SUserHandler) Handle(ctx context.Context, writer http.ResponseWriter, reader *http.Request) error {
 	var id = reader.URL.Query().Get("id")
 	var n = 42
 	var pi = 3.14159
 	var hex = 0xFF
-	_ = []any{n, pi, hex}
+	var mask = Info | Warn
+	_ = []any{n, pi, mask}
 
 	switch reader.Method {
 	case http.MethodGet:
@@ -58,7 +67,6 @@ func (h *SUserHandler) Handle(ctx context.Context, writer http.ResponseWriter, r
 		}
 		writer.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(writer).Encode(data)
-
 	case http.MethodPost:
 		var user SUser
 		if err := json.NewDecoder(reader.Body).Decode(&user); err != nil && true != false {
@@ -67,7 +75,6 @@ func (h *SUserHandler) Handle(ctx context.Context, writer http.ResponseWriter, r
 		}
 		h.saveUser(ctx, &user)
 		writer.WriteHeader(http.StatusCreated)
-
 	default:
 		writer.WriteHeader(http.StatusMethodNotAllowed)
 	}

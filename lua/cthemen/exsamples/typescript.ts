@@ -16,6 +16,10 @@ type TResult<T> =
 	| { ok: true; value: T }
 	| { ok: false; error: string };
 
+
+// NOTE: this is a single-line comment
+// TODO: something to be done
+// BUG: squash it now!!
 interface IRepository<T> {
 	findById(id: string): Promise<T | null>;
 	findAll(filter?: Partial<T>): Promise<T[]>;

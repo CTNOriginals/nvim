@@ -53,8 +53,10 @@ M.diff_line = "#2b2b2b"
 
 M.error = "#f44747"
 M.warn = "#cca700"
-M.info = "#75beff"
-M.hint = "#75beff"
+M.todo = "#fc8700"
+M.info = "#2fc1ff"
+M.hint = "#00eeaa"
+M.unnecessary = "#4c9cae"
 
 M.keyword = "#ec4058"
 M.keyword_declaration = "#226cee"

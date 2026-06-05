@@ -87,6 +87,7 @@ function M.setup(c)
 	hl("DiagnosticInfo", { fg = c.info })
 	hl("DiagnosticHint", { fg = c.hint })
 	hl("DiagnosticOk", { fg = c.number })
+	hl("DiagnosticUnnecessary", { fg = c.unnecessary })
 
 	hl("DiagnosticUnderlineError", { sp = c.error, undercurl = true })
 	hl("DiagnosticUnderlineWarn", { sp = c.warn, undercurl = true })

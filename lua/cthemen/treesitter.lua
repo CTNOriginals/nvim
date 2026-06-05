@@ -8,7 +8,7 @@ function M.setup(c)
 	hl("@comment", { fg = c.comment })
 	hl("@comment.error", { fg = c.error, bold = true })
 	hl("@comment.warning", { fg = c.warn })
-	hl("@comment.todo", { fg = c.keyword, bold = true })
+	hl("@comment.todo", { fg = c.todo, bold = true })
 	hl("@comment.note", { fg = c.info })
 
 	hl("@constant", { fg = c.constant })
