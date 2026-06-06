@@ -10,28 +10,42 @@ function M.on_attach(bufnr)
 	end
 
 	map("n", "]c", function()
-		if vim.wo.diff then vim.cmd.normal { "]c", bang = true }
-		else gitsigns.nav_hunk "next" end
+		if vim.wo.diff then
+			vim.cmd.normal({ "]c", bang = true })
+		else
+			gitsigns.nav_hunk("next")
+		end
 	end, { desc = "Jump to next git [c]hange" })
 
 	map("n", "[c", function()
-		if vim.wo.diff then vim.cmd.normal { "[c", bang = true }
-		else gitsigns.nav_hunk "prev" end
+		if vim.wo.diff then
+			vim.cmd.normal({ "[c", bang = true })
+		else
+			gitsigns.nav_hunk("prev")
+		end
 	end, { desc = "Jump to previous git [c]hange" })
 
-	map("v", "<leader>hs", function() gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" } end, { desc = "git [s]tage hunk" })
-	map("v", "<leader>hr", function() gitsigns.reset_hunk { vim.fn.line ".", vim.fn.line "v" } end, { desc = "git [r]eset hunk" })
-	map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "git [s]tage hunk" })
-	map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "git [r]eset hunk" })
-	map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "git [S]tage buffer" })
-	map("n", "<leader>hu", gitsigns.stage_hunk, { desc = "git [u]ndo stage hunk" })
-	map("n", "<leader>hR", gitsigns.reset_buffer, { desc = "git [R]eset buffer" })
-	map("n", "<leader>hp", gitsigns.preview_hunk, { desc = "git [p]review hunk" })
-	map("n", "<leader>hb", gitsigns.blame_line, { desc = "git [b]lame line" })
-	map("n", "<leader>hd", gitsigns.diffthis, { desc = "git [d]iff against index" })
-	map("n", "<leader>hD", function() gitsigns.diffthis "@" end, { desc = "git [D]iff against last commit" })
-	map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "[T]oggle git show [b]lame line" })
-	map("n", "<leader>tD", gitsigns.preview_hunk_inline, { desc = "[T]oggle git show [D]eleted" })
+	map({ "n", "v" }, "<leader>g", "", { desc = "[g]it" })
+	map("v", "<leader>gs", function()
+		gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+	end, { desc = "git [s]tage hunk" })
+	map("v", "<leader>gr", function()
+		gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+	end, { desc = "git [r]eset hunk" })
+	map("n", "<leader>gs", gitsigns.stage_hunk, { desc = "git [s]tage hunk" })
+	map("n", "<leader>gr", gitsigns.reset_hunk, { desc = "git [r]eset hunk" })
+	map("n", "<leader>gS", gitsigns.stage_buffer, { desc = "git [S]tage buffer" })
+	map("n", "<leader>gu", gitsigns.stage_hunk, { desc = "git [u]ndo stage hunk" })
+	map("n", "<leader>gR", gitsigns.reset_buffer, { desc = "git [R]eset buffer" })
+	map("n", "<leader>gp", gitsigns.preview_hunk, { desc = "git [p]review hunk" })
+	map("n", "<leader>gb", gitsigns.blame_line, { desc = "git [b]lame line" })
+	map("n", "<leader>gd", gitsigns.diffthis, { desc = "git [d]iff against index" })
+	map("n", "<leader>gD", function()
+		gitsigns.diffthis("@")
+	end, { desc = "git [D]iff against last commit" })
+	map("n", "<leader>gt", "", { desc = "[G]it [T]oggle" })
+	map("n", "<leader>gtb", gitsigns.toggle_current_line_blame, { desc = "[G]it [T]oggle [b]lame" })
+	map("n", "<leader>gtD", gitsigns.preview_hunk_inline, { desc = "[G]it [T]oggle [D]eleted" })
 end
 
 return M
