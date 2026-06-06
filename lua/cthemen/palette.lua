@@ -58,8 +58,11 @@ M.info = "#2fc1ff"
 M.hint = "#00eeaa"
 M.unnecessary = "#4c9cae"
 
-M.keyword = "#ec4058"
-M.keyword_declaration = "#226cee"
+-- M.keyword = "#ff00ff"
+M.keyword = "#226cee"
+M.keyword_declaration = "#025cfe"
+M.keyword_type = "#622cfe"
+M.keyword_flow = "#ec4058"
 M.keyword_storage = "#7ec8a0"
 M.string = "#ce9178"
 M.function_fg = "#fccc6f"
@@ -99,5 +102,6 @@ M.css_selector = "#d7ba7d"
 M.json_key = "#9cdcfe"
 
 M.none = "NONE"
+M.test = "#ff00ff"
 
 return M
