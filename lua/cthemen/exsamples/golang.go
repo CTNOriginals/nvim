@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-const AppName = "demo"
+const AppName string = "demo"
 
 type Bitmask uint
 
@@ -55,8 +55,8 @@ func (h *SUserHandler) Handle(ctx context.Context, writer http.ResponseWriter, r
 	var n = 42
 	var pi = 3.14159
 	var hex = 0xFF
-	var rune = '\n'
-	var mask = Info | Warn
+	var rune rune = '\n'
+	var mask Bitmask = Info | Warn
 	_ = []any{n, pi, mask, rune}
 
 	switch reader.Method {

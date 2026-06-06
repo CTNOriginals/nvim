@@ -67,7 +67,7 @@ function M.setup(c)
 	hl("@tag.delimiter", { fg = c.delimiter })
 
 	hl("@type", { fg = c.type })
-	hl("@type.builtin", { fg = c.builtin })
+	hl("@type.builtin", { fg = c.builtin, bold = true })
 	hl("@type.definition", { fg = c.type }) -- TODO:
 	hl("@type.qualifier", { fg = c.keyword })
 
