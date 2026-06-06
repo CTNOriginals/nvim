@@ -18,6 +18,7 @@ vim.keymap.set("n", "<CM-k>", "m`Vyp``")
 vim.keymap.set("v", "<CM-j>", "Vykp'<v'>")
 vim.keymap.set("v", "<CM-k>", "Vykpv'<k")
 
+-- Tab Navigation
 vim.keymap.set("n", "<M-h>", "gT")
 vim.keymap.set("n", "<M-l>", "gt")
 vim.keymap.set("i", "<M-h>", "<Esc><Esc>gTa")
@@ -25,8 +26,10 @@ vim.keymap.set("i", "<M-l>", "<Esc><Esc>gta")
 vim.keymap.set("t", "<M-h>", "<C-\\><C-n>gTa")
 vim.keymap.set("t", "<M-l>", "<C-\\><C-n>gta")
 
+-- Tab Management
 vim.keymap.set("n", "<MC-h>", ":tabmove -1<CR>")
 vim.keymap.set("n", "<MC-l>", ":tabmove +1<CR>")
+vim.keymap.set("n", "<C-W>Q", "<C-W>o<C-W>q", { desc = "Close tab" })
 
 vim.keymap.set("n", "<leader>v", "bve", { desc = "[V]issually select word" })
 vim.keymap.set("v", "<leader>v", "vbve", { desc = "Select word" })
@@ -79,4 +82,3 @@ end, { desc = "Harpoon Previous" })
 vim.keymap.set("n", "<leader>ts", "", { desc = "[T]ree[S]itter" })
 vim.keymap.set("n", "<leader>tsi", "<cmd>Inspect<cr>", { desc = "[T]ree[S]itter [I]nspect" })
 vim.keymap.set("n", "<leader>tst", "<cmd>InspectTree<cr>", { desc = "[T]ree[S]itter Inspect [T]ree" })
-
