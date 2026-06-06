@@ -19,8 +19,16 @@ vim.keymap.set("v", "<CM-j>", "Vykp'<v'>")
 vim.keymap.set("v", "<CM-k>", "Vykpv'<k")
 
 -- Buffer Management
--- vim.keymap.set("n", "<leader>b", "", { desc = "[B]uffer" })
--- vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { desc = "[B]uffer [D]elete" })
+vim.keymap.set("n", "<leader>b", "", { desc = "[B]uffer" })
+vim.keymap.set("n", "<leader>bD", function()
+	for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+		if vim.api.nvim_buf_is_loaded(bufnr) then
+			if #vim.fn.win_findbuf(bufnr) == 0 then
+				vim.api.nvim_buf_delete(bufnr, { force = false })
+			end
+		end
+	end
+end, { desc = "[B]uffer [D]elete unopened" })
 
 -- Diff View
 vim.keymap.set("n", "<leader>d", "", { desc = "[D]iff View" })
