@@ -3,10 +3,8 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 vim.keymap.set("n", "<leader>b", "", { desc = "[b]uffer" })
 vim.keymap.set("n", "<leader>bD", function()
 	for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-		if vim.api.nvim_buf_is_loaded(bufnr) then
-			if #vim.fn.win_findbuf(bufnr) == 0 then
-				vim.api.nvim_buf_delete(bufnr, { force = false })
-			end
+		if not vim.api.nvim_buf_is_loaded(bufnr) or #vim.fn.win_findbuf(bufnr) == 0 then
+			vim.api.nvim_buf_delete(bufnr, { force = false })
 		end
 	end
 end, { desc = "[b]uffer [D]elete unopened" })
