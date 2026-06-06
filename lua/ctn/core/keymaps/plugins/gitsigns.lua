@@ -43,9 +43,9 @@ function M.on_attach(bufnr)
 	map("n", "<leader>gD", function()
 		gitsigns.diffthis("@")
 	end, { desc = "git [D]iff against last commit" })
-	map("n", "<leader>gt", "", { desc = "[G]it [T]oggle" })
-	map("n", "<leader>gtb", gitsigns.toggle_current_line_blame, { desc = "[G]it [T]oggle [b]lame" })
-	map("n", "<leader>gtD", gitsigns.preview_hunk_inline, { desc = "[G]it [T]oggle [D]eleted" })
+	map("n", "<leader>gt", "", { desc = "[g]it [t]oggle" })
+	map("n", "<leader>gtb", gitsigns.toggle_current_line_blame, { desc = "[g]it [t]oggle [b]lame" })
+	map("n", "<leader>gtD", gitsigns.preview_hunk_inline, { desc = "[g]it [t]oggle [D]eleted" })
 end
 
 return M

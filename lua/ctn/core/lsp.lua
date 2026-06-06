@@ -6,15 +6,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 		end
 
-		map("grn", vim.lsp.buf.rename, "[R]e[n]ame")
-		map("gra", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
-		map("grr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-		map("gri", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-		map("grd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-		map("grD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+		map("grn", vim.lsp.buf.rename, "[r]e[n]ame")
+		map("gra", vim.lsp.buf.code_action, "[g]oto Code [a]ction", { "n", "x" })
+		map("grr", require("telescope.builtin").lsp_references, "[g]oto [r]eferences")
+		map("gri", require("telescope.builtin").lsp_implementations, "[g]oto [i]mplementation")
+		map("grd", require("telescope.builtin").lsp_definitions, "[g]oto [d]efinition")
+		map("grD", vim.lsp.buf.declaration, "[g]oto [D]eclaration")
 		map("gO", require("telescope.builtin").lsp_document_symbols, "Open Document Symbols")
 		map("gW", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Open Workspace Symbols")
-		map("grt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
+		map("grt", require("telescope.builtin").lsp_type_definitions, "[g]oto [t]ype Definition")
 
 		local function client_supports_method(client, method, bufnr)
 			if vim.fn.has("nvim-0.11") == 1 then
@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				else
 					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
 				end
-			end, "[T]oggle Inlay [H]ints")
+			end, "[t]oggle Inlay [h]ints")
 		end
 	end,
 })

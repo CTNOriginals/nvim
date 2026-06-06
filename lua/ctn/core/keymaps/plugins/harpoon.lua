@@ -1,10 +1,10 @@
-vim.keymap.set("n", "<leader>h", "", { desc = "[H]arpoon" })
+vim.keymap.set("n", "<leader>h", "", { desc = "[h]arpoon" })
 vim.keymap.set("n", "<leader>hm", function()
 	require("harpoon.ui").toggle_quick_menu()
-end, { desc = "[H]arpoon [M]enu" })
+end, { desc = "[h]arpoon [m]enu" })
 vim.keymap.set("n", "<leader>ha", function()
 	require("harpoon.mark").add_file()
-end, { desc = "[H]arpoon [A]dd" })
+end, { desc = "[h]arpoon [a]dd" })
 
 vim.keymap.set("n", "<M-o>", function()
 	require("harpoon.ui").nav_next()

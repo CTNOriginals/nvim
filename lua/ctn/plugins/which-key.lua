@@ -37,8 +37,8 @@ return {
 			},
 		},
 		spec = {
-			{ "<leader>s", group = "[S]earch" },
-			{ "<leader>t", group = "[T]oggle" },
+			{ "<leader>s", group = "[s]earch" },
+			{ "<leader>t", group = "[t]oggle" },
 		},
 	},
 }

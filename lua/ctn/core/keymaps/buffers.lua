@@ -1,6 +1,6 @@
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [q]uickfix list" })
 
-vim.keymap.set("n", "<leader>b", "", { desc = "[B]uffer" })
+vim.keymap.set("n", "<leader>b", "", { desc = "[b]uffer" })
 vim.keymap.set("n", "<leader>bD", function()
 	for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
 		if vim.api.nvim_buf_is_loaded(bufnr) then
@@ -9,7 +9,7 @@ vim.keymap.set("n", "<leader>bD", function()
 			end
 		end
 	end
-end, { desc = "[B]uffer [D]elete unopened" })
+end, { desc = "[b]uffer [D]elete unopened" })
 
 vim.keymap.set("n", "<C-e>", function()
 	local builtin = require("telescope.builtin")

@@ -8,6 +8,6 @@ vim.keymap.set("n", "<CM-k>", "m`Vyp``", { desc = "Duplicate line above" })
 vim.keymap.set("v", "<CM-j>", "Vykp'<v'>", { desc = "Duplicate selection below" })
 vim.keymap.set("v", "<CM-k>", "Vykpv'<k", { desc = "Duplicate selection above" })
 
-vim.keymap.set("n", "<leader>v", "bve", { desc = "[V]issually select word" })
+vim.keymap.set("n", "<leader>v", "bve", { desc = "[v]issually select word" })
 vim.keymap.set("v", "<leader>v", "vbve", { desc = "Select word" })
 vim.keymap.set("i", "<C-e>", "<Esc>bvei", { desc = "Select word" })
