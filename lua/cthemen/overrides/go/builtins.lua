@@ -12,9 +12,7 @@ function M.setup(bufnr)
 	local ok, q = pcall(vim.treesitter.query.parse, "go", BUILTINS_QUERY)
 
 	local apply = function(r)
-		if not ok then
-			return
-		end
+		if not ok then return end
 		for id, node in q:iter_captures(r, bufnr, 0, -1) do
 			local hl = q.captures[id] == "boolean" and "@boolean" or "@constant.builtin"
 			local sr, sc, er, ec = node:range()
