@@ -68,15 +68,15 @@ function M.setup(c)
 
 	hl("@type", { fg = c.type })
 	hl("@type.builtin", { fg = c.builtin, bold = true })
-	hl("@type.definition", { fg = c.type }) -- TODO:
+	hl("@type.definition", { fg = c.type })
 	hl("@type.qualifier", { fg = c.keyword })
 
 	hl("@variable", { fg = c.variable })
 	hl("@variable.builtin", { fg = c.builtin })
-	hl("@variable.member", { fg = c.field })
+	hl("@variable.member", { fg = c.member })
 	hl("@variable.parameter", { fg = c.parameter })
 
-	hl("@field", { fg = c.field })
+	hl("@field", { fg = c.member })
 	hl("@float", { fg = c.number })
 
 	hl("@symbol", { fg = c.constant })

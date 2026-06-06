@@ -50,7 +50,7 @@ func NewUserHandler(cfg *SConfig) *SUserHandler {
 // TODO: something to be done
 // BUG: squash Identifierit now!!
 // TEST: askdjf
-func (h *SUserHandler) Handle(ctx context.Context, writer http.ResponseWriter, reader *http.Request) error {
+func (this *SUserHandler) Handle(ctx context.Context, writer http.ResponseWriter, reader *http.Request) error {
 	var id = reader.URL.Query().Get("id")
 	var n = 42
 	var pi = 3.14159
@@ -59,9 +59,11 @@ func (h *SUserHandler) Handle(ctx context.Context, writer http.ResponseWriter, r
 	var mask Bitmask = Info | Warn
 	_ = []any{n, pi, mask, rune}
 
+	fmt.Printf("h.config.Debug: %v\n", this.config.Debug)
+
 	switch reader.Method {
 	case http.MethodGet:
-		var data, err = h.fetchUser(ctx, id)
+		var data, err = this.fetchUser(ctx, id)
 		if err != nil {
 			writer.WriteHeader(http.StatusInternalServerError)
 			return err
@@ -74,7 +76,7 @@ func (h *SUserHandler) Handle(ctx context.Context, writer http.ResponseWriter, r
 			writer.WriteHeader(http.StatusBadRequest)
 			goto somelabel
 		}
-		h.saveUser(ctx, &user)
+		this.saveUser(ctx, &user)
 		writer.WriteHeader(http.StatusCreated)
 	default:
 		writer.WriteHeader(http.StatusMethodNotAllowed)
@@ -96,11 +98,11 @@ somelabel:
 	return nil
 }
 
-func (h *SUserHandler) fetchUser(ctx context.Context, id string) (*SUser, error) {
+func (this *SUserHandler) fetchUser(ctx context.Context, id string) (*SUser, error) {
 	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
 	defer cancel()
 
-	var row = h.db.QueryRowContext(ctx, "SELECT id, name, email FROM users WHERE id = $1", id)
+	var row = this.db.QueryRowContext(ctx, "SELECT id, name, email FROM users WHERE id = $1", id)
 
 	var user = &SUser{}
 	var err = row.Scan(&user.ID, &user.Name, &user.Email)
@@ -110,10 +112,10 @@ func (h *SUserHandler) fetchUser(ctx context.Context, id string) (*SUser, error)
 	return user, err
 }
 
-func (h *SUserHandler) saveUser(ctx context.Context, user *SUser) error {
+func (this *SUserHandler) saveUser(ctx context.Context, user *SUser) error {
 	var query = `INSERT INTO users (name, email) VALUES ($1, $2) RETURNING id`
 	// raw string with backtick
-	var err = h.db.QueryRowContext(ctx, query, user.Name, user.Email).Scan(&user.ID)
+	var err = this.db.QueryRowContext(ctx, query, user.Name, user.Email).Scan(&user.ID)
 	if err != nil {
 		return fmt.Errorf("save failed: %w", err)
 	}
