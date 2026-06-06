@@ -23,12 +23,7 @@ const (
 
 var version = "1.0.0"
 
-type SConfig struct {
-	Port  int    `json:"port"`
-	Env   string `json:"env"`
-	Debug bool   `json:"debug"`
-	Rate  float64
-}
+type SUser struct{ *SConfig }
 
 type IHandler interface {
 	Handle(ctx context.Context, w http.ResponseWriter, r *http.Request) error
@@ -46,20 +41,29 @@ func NewUserHandler(cfg *SConfig) *SUserHandler {
 	}
 }
 
-// NOTE: this is a single-line comment
-// TODO: something to be done
-// BUG: squash Identifierit now!!
-// TEST: askdjf
-func (this *SUserHandler) Handle(ctx context.Context, writer http.ResponseWriter, reader *http.Request) error {
-	var id = reader.URL.Query().Get("id")
-	var n = 42
-	var pi = 3.14159
-	var hex = 0xFF
-	var rune rune = '\n'
-	var mask Bitmask = Info | Warn
-	_ = []any{n, pi, mask, rune}
+type SConfig struct {
+	Port  int    `json:"port"`
+	Env   string `json:"env"`
+	Debug bool   `json:"debug"`
+	Rate  float64
+}
 
-	fmt.Printf("h.config.Debug: %v\n", this.config.Debug)
+// NOTE: features continue until moral improves!!
+// TODO: rewrite in rust -_-
+// BUG: squash Identifierit now!!
+// TEST: testing the best
+func (this *SUserHandler) Handle(
+	ctx context.Context,
+	writer http.ResponseWriter, reader *http.Request,
+) error {
+	var id = reader.URL.Query().Get("id")
+	var pi = 3.14159
+	var char rune = '\n'
+	var yesnt = true || false
+	var mask Bitmask = Info | Warn
+	_ = []any{pi, pi, mask, char}
+
+	fmt.Printf("Debug: %v\n", this.config.Debug)
 
 	switch reader.Method {
 	case http.MethodGet:
@@ -72,7 +76,8 @@ func (this *SUserHandler) Handle(ctx context.Context, writer http.ResponseWriter
 		json.NewEncoder(writer).Encode(data)
 	case http.MethodPost:
 		var user SUser
-		if err := json.NewDecoder(reader.Body).Decode(&user); err != nil && true != false {
+		var err = json.NewDecoder(reader.Body).Decode(&user)
+		if err != nil {
 			writer.WriteHeader(http.StatusBadRequest)
 			goto somelabel
 		}

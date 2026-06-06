@@ -14,8 +14,7 @@ namespace Cthemen.Examples
 		Viewer
 	}
 
-	public record SUserDto
-	{
+	public record SUserDto {
 		[JsonPropertyName("id")]
 		public Guid Id { get; init; }
 
@@ -35,8 +34,7 @@ namespace Cthemen.Examples
 		public List<string> Tags { get; init; } = new();
 	}
 
-	public interface IRepository<T> where T : class
-	{
+	public interface IRepository<T> where T : class {
 		Task<T?> GetByIdAsync(Guid id);
 		Task<IReadOnlyList<T>> GetAllAsync();
 		Task<T> CreateAsync(T entity);
@@ -44,17 +42,14 @@ namespace Cthemen.Examples
 		Task<bool> DeleteAsync(Guid id);
 	}
 
-	public abstract class SBaseRepository<T> : IRepository<T> where T : class
-	{
+	public abstract class SBaseRepository<T> : IRepository<T> where T : class {
 		protected readonly Dictionary<Guid, T> Store = new();
 
-		public virtual Task<T?> GetByIdAsync(Guid id)
-		{
+		public virtual Task<T?> GetByIdAsync(Guid id) {
 			return Task.FromResult(Store.TryGetValue(id, out var item) ? item : null);
 		}
 
-		public virtual Task<IReadOnlyList<T>> GetAllAsync()
-		{
+		public virtual Task<IReadOnlyList<T>> GetAllAsync() {
 			return Task.FromResult<IReadOnlyList<T>>(Store.Values.ToList());
 		}
 
@@ -63,32 +58,23 @@ namespace Cthemen.Examples
 		public abstract Task<bool> DeleteAsync(Guid id);
 	}
 
-	public sealed class SUserRepository : SBaseRepository<SUserDto>
-	{
-		public override async Task<SUserDto> CreateAsync(SUserDto entity)
-		{
-			/*
-			 * block comment
-			 * spanning multiple lines
-			 */
+	public sealed class SUserRepository : SBaseRepository<SUserDto> {
+		public override async Task<SUserDto> CreateAsync(SUserDto entity) {
 			var id = Guid.NewGuid();
 			var user = entity with { Id = id };
 			Store[id] = user;
 			return await Task.FromResult(user);
 		}
 
-		public override async Task<SUserDto> UpdateAsync(SUserDto entity)
-		{
-			if (!Store.ContainsKey(entity.Id))
-			{
+		public override async Task<SUserDto> UpdateAsync(SUserDto entity) {
+			if (!Store.ContainsKey(entity.Id)) {
 				throw new KeyNotFoundException($"user {entity.Id} not found");
 			}
 			Store[entity.Id] = entity;
 			return await Task.FromResult(entity);
 		}
 
-		public override Task<bool> DeleteAsync(Guid id)
-		{
+		public override Task<bool> DeleteAsync(Guid id) {
 			return Task.FromResult(Store.Remove(id));
 		}
 	}

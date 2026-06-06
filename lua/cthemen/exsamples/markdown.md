@@ -43,6 +43,17 @@ This document demonstrates **Markdown** syntax highlighting across various eleme
 >
 > > Nested blockquote for demonstration.
 
+## Tables
+
+| Feature       | Status | Priority |
+| :------------ | :----: | -------: |
+| syntax        |   ✅   |      high |
+| treesitter    |   ✅   |      high |
+| lsp           |   ✅   |    medium |
+| dap           |   ⏳   |       low |
+
+
+
 ## Code Blocks
 
 ### Go
@@ -101,15 +112,6 @@ public static class Helpers
 - console.log("old code");
 + console.log("new code");
 ```
-
-## Tables
-
-| Feature       | Status | Priority |
-| :------------ | :----: | -------: |
-| syntax        |   ✅   |      high |
-| treesitter    |   ✅   |      high |
-| lsp           |   ✅   |    medium |
-| dap           |   ⏳   |       low |
 
 ## Links and Images
 
