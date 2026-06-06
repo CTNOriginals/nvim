@@ -68,10 +68,80 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			end
 		end
 
+		-- Same pattern for Go method receiver references: apply @variable.parameter
+		-- to uses of the receiver inside the method body (not just the declaration).
+		local receiver_ns = vim.api.nvim_create_namespace("cthemen_go_receiver")
+		local receiver_ok, receiver_query = pcall(
+			vim.treesitter.query.parse,
+			"go",
+			[[
+			(method_declaration
+			  receiver: (parameter_list
+			    (parameter_declaration
+			      name: (identifier) @receiver.name))
+			  body: (block) @receiver.body)
+		]]
+		)
+		local ident_ok, ident_query = pcall(vim.treesitter.query.parse, "go", [[(identifier) @id]])
+
+		local function apply_receivers()
+			vim.api.nvim_buf_clear_namespace(bufnr, receiver_ns, 0, -1)
+			if not (receiver_ok and ident_ok) then
+				return
+			end
+
+			local parser = vim.treesitter.get_parser(bufnr, "go")
+			if not parser then
+				return
+			end
+			local tree = parser:parse()[1]
+			if not tree then
+				return
+			end
+
+			local receivers = {}
+			local pending_name
+
+			for id, node in receiver_query:iter_captures(tree:root(), bufnr, 0, -1) do
+				local cap = receiver_query.captures[id]
+				if cap == "receiver.name" then
+					pending_name = { text = vim.treesitter.get_node_text(node, bufnr) }
+				elseif cap == "receiver.body" and pending_name then
+					table.insert(receivers, {
+						name = pending_name.text,
+						body_sr = node:start(),
+						body_er = node:end_(),
+					})
+					pending_name = nil
+				end
+			end
+
+			for id, node in ident_query:iter_captures(tree:root(), bufnr, 0, -1) do
+				local text = vim.treesitter.get_node_text(node, bufnr)
+				local sr = node:start()
+				local _, sc, er, ec = node:range()
+
+				for _, rec in ipairs(receivers) do
+					if text == rec.name and sr >= rec.body_sr and sr < rec.body_er then
+						vim.api.nvim_buf_set_extmark(bufnr, receiver_ns, sr, sc, {
+							end_row = er,
+							end_col = ec,
+							hl_group = "@go.receiver",
+							priority = 150,
+						})
+						break
+					end
+				end
+			end
+		end
+
 		apply()
+		apply_receivers()
 		-- Re-apply on text changes since tree-sitter re-parses the buffer.
 		vim.api.nvim_create_autocmd("TextChanged", { buffer = bufnr, callback = apply })
 		vim.api.nvim_create_autocmd("TextChangedI", { buffer = bufnr, callback = apply })
+		vim.api.nvim_create_autocmd("TextChanged", { buffer = bufnr, callback = apply_receivers })
+		vim.api.nvim_create_autocmd("TextChangedI", { buffer = bufnr, callback = apply_receivers })
 	end,
 })
 

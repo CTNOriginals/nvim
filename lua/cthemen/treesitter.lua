@@ -44,6 +44,7 @@ function M.setup(c)
 
 	hl("@parameter", { fg = c.parameter })
 	hl("@parameter.reference", { fg = c.parameter })
+	hl("@go.receiver", { fg = c.receiver })
 
 	hl("@property", { fg = c.property })
 

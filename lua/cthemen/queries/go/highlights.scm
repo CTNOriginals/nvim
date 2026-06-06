@@ -8,3 +8,9 @@
 ; true/false are handled by the default parser as @boolean.
 (nil) @constant.builtin
 (iota) @constant.builtin
+
+; Method receiver parameter (e.g., `s` in `func (s T) Method()`)
+(method_declaration
+  receiver: (parameter_list
+    (parameter_declaration
+      name: (identifier) @go.receiver)))
