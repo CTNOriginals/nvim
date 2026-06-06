@@ -59,9 +59,9 @@ M.hint = "#00eeaa"
 M.unnecessary = "#4c9cae"
 
 -- M.keyword = "#ff00ff"
-M.keyword = "#226cee"
-M.keyword_declaration = "#428cfe"
-M.keyword_type = "#622cfe"
+M.keyword = "#226fee"
+M.keyword_declaration = "#025cee"
+M.keyword_type = "#5230ff"
 M.keyword_flow = "#ec5078"
 M.keyword_storage = "#7ec8a0"
 M.function_fg = "#fccc6f" -- '_fg' is needed to not make lua think its and actual function declaration
