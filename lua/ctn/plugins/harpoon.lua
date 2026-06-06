@@ -1,4 +1,4 @@
 return {
-  "ThePrimeagen/harpoon",
-  opts = { tabline = false },
+	"ThePrimeagen/harpoon",
+	opts = { tabline = false },
 }

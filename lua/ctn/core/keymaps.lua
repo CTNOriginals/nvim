@@ -38,42 +38,42 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-w>t", ":tabe<CR>", { desc = "Create new tab" })
 
 vim.keymap.set("n", "<C-e>", function()
-  local builtin = require("telescope.builtin")
-  local action_state = require("telescope.actions.state")
+	local builtin = require("telescope.builtin")
+	local action_state = require("telescope.actions.state")
 
-  builtin.buffers({
-    initial_mode = "normal",
-    attach_mappings = function(prompt_bufnr, map)
-      local delete_buf = function()
-        local current_picker = action_state.get_current_picker(prompt_bufnr)
-        current_picker:delete_selection(function(selection)
-          vim.api.nvim_buf_delete(selection.bufnr, { force = true })
-        end)
-      end
+	builtin.buffers({
+		initial_mode = "normal",
+		attach_mappings = function(prompt_bufnr, map)
+			local delete_buf = function()
+				local current_picker = action_state.get_current_picker(prompt_bufnr)
+				current_picker:delete_selection(function(selection)
+					vim.api.nvim_buf_delete(selection.bufnr, { force = true })
+				end)
+			end
 
-      map("n", "<c-d>", delete_buf)
-      return true
-    end,
-  }, {
-    sort_lastused = true,
-    sort_mru = true,
-    theme = "dropdown",
-  })
+			map("n", "<c-d>", delete_buf)
+			return true
+		end,
+	}, {
+		sort_lastused = true,
+		sort_mru = true,
+		theme = "dropdown",
+	})
 end, { desc = "List buffers (d to delete)" })
 
 vim.keymap.set("n", "<leader>h", "", { desc = "[H]arpoon" })
 vim.keymap.set("n", "<leader>hm", function()
-  require("harpoon.ui").toggle_quick_menu()
+	require("harpoon.ui").toggle_quick_menu()
 end, { desc = "[H]arpoon [M]enu" })
 vim.keymap.set("n", "<leader>ha", function()
-  require("harpoon.mark").add_file()
+	require("harpoon.mark").add_file()
 end, { desc = "[H]arpoon [A]dd" })
 
 vim.keymap.set("n", "<M-o>", function()
-  require("harpoon.ui").nav_next()
+	require("harpoon.ui").nav_next()
 end, { desc = "Harpoon Next" })
 vim.keymap.set("n", "<M-i>", function()
-  require("harpoon.ui").nav_prev()
+	require("harpoon.ui").nav_prev()
 end, { desc = "Harpoon Previous" })
 
 vim.keymap.set("n", "<leader>ts", "", { desc = "[T]ree[S]itter" })

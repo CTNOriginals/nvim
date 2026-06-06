@@ -11,7 +11,7 @@ vim.o.mouse = "a"
 vim.o.showmode = false
 
 vim.schedule(function()
-  vim.o.clipboard = "unnamedplus"
+	vim.o.clipboard = "unnamedplus"
 end)
 
 vim.o.breakindent = false
