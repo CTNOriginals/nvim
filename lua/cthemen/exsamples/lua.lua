@@ -94,9 +94,14 @@ local function handle_request(method, path)
 end
 
 -- single line comment
+vim.keymap.set("n", "<M-j>", ":m .+1<CR>==")
 local numbers = { 1, 2, 3, 4, 5 }
-local doubled = vim.tbl_map(function(n) return n * 2 end, numbers)
-local odds = vim.tbl_filter(function(n) return n % 2 ~= 0 end, numbers)
+local doubled = vim.tbl_map(function(n)
+	return n * 2
+end, numbers)
+local odds = vim.tbl_filter(function(n)
+	return n % 2 ~= 0
+end, numbers)
 
 local sum = 0
 for _, n in ipairs(numbers) do
@@ -120,7 +125,7 @@ local neg = -273
 local flag = true
 local empty = nil
 local str = "hello world"
-local str2 = 'single quotes'
+local str2 = "single quotes"
 local mline = [[
 line one
 line two

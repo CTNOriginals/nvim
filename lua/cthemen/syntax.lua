@@ -31,10 +31,10 @@ function M.setup(c)
 	hl("Macro", { fg = c.preproc })
 	hl("PreCondit", { fg = c.preproc })
 
-	hl("Type", { fg = c.type_fg })
+	hl("Type", { fg = c.type })
 	hl("StorageClass", { fg = c.keyword_declaration, bold = true })
-	hl("Structure", { fg = c.type_fg })
-	hl("Typedef", { fg = c.type_fg })
+	hl("Structure", { fg = c.type })
+	hl("Typedef", { fg = c.type })
 
 	hl("Special", { fg = c.special })
 	hl("SpecialChar", { fg = c.escape })
