@@ -44,7 +44,10 @@ M.statusline_fg = "#ffffff"
 M.title_bar_bg = "#323233"
 M.title_bar_fg = "#cccccc"
 
-M.badge_bg = "#007acc"
+M.badge_n_bg = "#007aff"
+M.badge_v_bg = "#00cccc"
+M.badge_i_bg = "#00cc66"
+M.badge_c_bg = "#ee7700"
 M.badge_fg = "#ffffff"
 
 M.diff_add = "#1e4620"
