@@ -92,7 +92,7 @@ M.special = "#d237e6"
 M.uri = "#569cd6"
 
 M.markdown_heading = "#569cd6"
-M.markdown_code = "#ce9178"
+M.markdown_code = "#de8168"
 M.markdown_list = "#b5cea8"
 M.markdown_quote = "#ce9178"
 M.markdown_link = "#569cd6"
