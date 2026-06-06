@@ -1,0 +1,5 @@
+vim.keymap.set("n", "<leader>d", "", { desc = "[D]iff View" })
+vim.keymap.set("n", "<leader>do", ":DiffviewOpen<CR>", { desc = "[D]iff View [O]pen" })
+vim.keymap.set("n", "<leader>dc", ":DiffviewClose<CR>", { desc = "[D]iff View [C]lose" })
+vim.keymap.set("n", "<leader>df", ":DiffviewFileHistory<CR>", { desc = "[D]iff View [F]ile History" })
+vim.keymap.set("n", "<leader>dr", ":DiffviewRefresh<CR>", { desc = "[D]iff View [R]efresh" })
