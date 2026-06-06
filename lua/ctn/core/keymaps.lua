@@ -18,6 +18,17 @@ vim.keymap.set("n", "<CM-k>", "m`Vyp``")
 vim.keymap.set("v", "<CM-j>", "Vykp'<v'>")
 vim.keymap.set("v", "<CM-k>", "Vykpv'<k")
 
+-- Buffer Management
+-- vim.keymap.set("n", "<leader>b", "", { desc = "[B]uffer" })
+-- vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { desc = "[B]uffer [D]elete" })
+
+-- Diff View
+vim.keymap.set("n", "<leader>d", "", { desc = "[D]iff View" })
+vim.keymap.set("n", "<leader>do", ":DiffviewOpen<CR>", { desc = "[D]iff View [O]pen" })
+vim.keymap.set("n", "<leader>dc", ":DiffviewClose<CR>", { desc = "[D]iff View [C]lose" })
+vim.keymap.set("n", "<leader>df", ":DiffviewFileHistory<CR>", { desc = "[D]iff View [F]ile History" })
+vim.keymap.set("n", "<leader>dr", ":DiffviewRefresh<CR>", { desc = "[D]iff View [R]efresh" })
+
 -- Tab Navigation
 vim.keymap.set("n", "<M-h>", "gT")
 vim.keymap.set("n", "<M-l>", "gt")
@@ -25,7 +36,6 @@ vim.keymap.set("i", "<M-h>", "<Esc><Esc>gTa")
 vim.keymap.set("i", "<M-l>", "<Esc><Esc>gta")
 vim.keymap.set("t", "<M-h>", "<C-\\><C-n>gTa")
 vim.keymap.set("t", "<M-l>", "<C-\\><C-n>gta")
-
 -- Tab Management
 vim.keymap.set("n", "<MC-h>", ":tabmove -1<CR>")
 vim.keymap.set("n", "<MC-l>", ":tabmove +1<CR>")
