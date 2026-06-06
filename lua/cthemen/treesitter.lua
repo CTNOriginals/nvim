@@ -125,7 +125,7 @@ function M.setup(c)
 	hl("@diff.minus", { fg = c.regex })
 	hl("@diff.delta", { fg = c.warn })
 
-	hl("@keyword.import", { fg = c.preproc })
+	hl("@keyword.import", { fg = c.preproc, bold = true })
 	hl("@keyword.storage", { fg = c.keyword_declaration, bold = true })
 	hl("@keyword.repeat", { fg = c.keyword_flow, bold = true })
 	hl("@keyword.debug", { fg = c.special })
