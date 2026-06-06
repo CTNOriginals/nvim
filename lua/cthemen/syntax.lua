@@ -14,7 +14,7 @@ function M.setup(c)
 	hl("Boolean", { fg = c.boolean })
 	hl("Float", { fg = c.number })
 
-	hl("Identifier", { fg = c.variable })
+	hl("Identifier", { fg = c.namespace })
 	hl("Function", { fg = c.function_fg })
 
 	hl("Statement", { fg = c.keyword_flow, bold = true })
@@ -22,7 +22,7 @@ function M.setup(c)
 	hl("Repeat", { fg = c.keyword_flow, bold = true })
 	hl("Label", { fg = c.label, bold = true })
 	hl("Operator", { fg = c.operator })
-	hl("Keyword", { fg = c.keyword_flow, bold = true })
+	hl("Keyword", { fg = c.keyword })
 	hl("Exception", { fg = c.keyword_flow, bold = true })
 
 	hl("PreProc", { fg = c.preproc })

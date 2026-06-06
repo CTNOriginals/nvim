@@ -12,7 +12,7 @@ function M.setup(c)
 	hl("@comment.note", { fg = c.info })
 
 	hl("@constant", { fg = c.constant })
-	hl("@constant.builtin", { fg = c.boolean })
+	hl("@constant.builtin", { fg = c.builtin })
 	hl("@constant.macro", { fg = c.preproc })
 
 	hl("@constructor", { fg = c.constructor })
@@ -26,7 +26,7 @@ function M.setup(c)
 
 	hl("@keyword", { fg = c.keyword, bold = true })
 	hl("@keyword.function", { fg = c.keyword_declaration, bold = true })
-	hl("@keyword.operator", { fg = c.operator })
+	hl("@keyword.operator", { fg = c.keyword, bold = true })
 	hl("@keyword.return", { fg = c.keyword_flow, bold = true })
 
 	hl("@label", { fg = c.label, bold = true })
@@ -40,7 +40,7 @@ function M.setup(c)
 	hl("@number.float", { fg = c.number })
 	hl("@boolean", { fg = c.boolean })
 
-	hl("@operator", { fg = c.operator })
+	hl("@operator", { fg = c.operator, bold = true })
 
 	hl("@parameter", { fg = c.parameter })
 	hl("@parameter.reference", { fg = c.parameter })
@@ -48,7 +48,7 @@ function M.setup(c)
 	hl("@property", { fg = c.property })
 
 	hl("@punctuation.delimiter", { fg = c.delimiter })
-	hl("@punctuation.bracket", { fg = c.operator })
+	hl("@punctuation.bracket", { fg = c.bracket })
 	hl("@punctuation.special", { fg = c.escape })
 
 	hl("@string", { fg = c.string })

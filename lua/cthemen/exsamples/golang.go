@@ -55,8 +55,9 @@ func (h *SUserHandler) Handle(ctx context.Context, writer http.ResponseWriter, r
 	var n = 42
 	var pi = 3.14159
 	var hex = 0xFF
+	var rune = '\n'
 	var mask = Info | Warn
-	_ = []any{n, pi, mask}
+	_ = []any{n, pi, mask, rune}
 
 	switch reader.Method {
 	case http.MethodGet:
