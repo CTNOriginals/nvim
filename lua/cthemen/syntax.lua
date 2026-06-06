@@ -46,7 +46,7 @@ function M.setup(c)
 	hl("Underlined", { fg = c.uri, underline = true })
 	hl("Ignore", { fg = c.none })
 	hl("Error", { fg = c.error, bold = true })
-	-- hl("Todo", { fg = c.todo, bold = true })
+	hl("Todo", { fg = c.todo, bold = true })
 
 	hl("SpellBad", { sp = c.error, undercurl = true })
 	hl("SpellCap", { sp = c.warn, undercurl = true })

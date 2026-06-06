@@ -1,4 +1,0 @@
--- vim.g.mkdp_port = "8895"
--- -- vim.g.mkdp_browser
---
--- return {}

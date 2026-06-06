@@ -1,3 +1,5 @@
-require("ctn.remap")
-require("ctn.plugins")
-require("ctn.loadSessionOnStart")
+require("ctn.core.options")
+require("ctn.core.keymaps")
+require("ctn.core.autocmds")
+require("ctn.core.lsp")
+require("ctn.util.session")

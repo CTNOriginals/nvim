@@ -98,8 +98,6 @@ M.css_value = "#ce9178"
 M.css_selector = "#d7ba7d"
 M.json_key = "#9cdcfe"
 
-M.test = "#ff0000"
-
 M.none = "NONE"
 
 return M
