@@ -54,6 +54,7 @@ function M.setup()
 	}, {
 		require("cthemen.overrides.go.builtins"),
 		require("cthemen.overrides.go.receiver"),
+		require("cthemen.overrides.go.keywords"),
 	})
 end
 
