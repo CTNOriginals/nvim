@@ -68,18 +68,19 @@ func (this *SUserHandler) Handle(
 	switch reader.Method {
 	case http.MethodGet:
 		var data, err = this.fetchUser(ctx, id)
-		if err != nil {
-			writer.WriteHeader(http.StatusInternalServerError)
-			return err
+		if err == nil {
+			json.NewEncoder(writer).Encode(data)
+			writer.Header().Set("Content-Type", "application/json")
+			goto somelabel
 		}
-		writer.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(writer).Encode(data)
+		writer.WriteHeader(http.StatusInternalServerError)
+		return err
 	case http.MethodPost:
 		var user SUser
 		var err = json.NewDecoder(reader.Body).Decode(&user)
 		if err != nil {
 			writer.WriteHeader(http.StatusBadRequest)
-			goto somelabel
+			break
 		}
 		this.saveUser(ctx, &user)
 		writer.WriteHeader(http.StatusCreated)
