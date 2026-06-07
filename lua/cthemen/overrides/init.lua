@@ -48,6 +48,10 @@ local function setup_language(pattern, lang, lsp_overrides, overrides)
 end
 
 function M.setup()
+	local c = require("cthemen.palette")
+
+	vim.api.nvim_set_hl(0, "goSpecialString", { fg = c.escape })
+
 	setup_language("*.go", "go", {
 		"@lsp.type.variable.go",
 		"@lsp.typemod.variable.defaultLibrary.go",
@@ -55,6 +59,7 @@ function M.setup()
 		require("cthemen.overrides.go.builtins"),
 		require("cthemen.overrides.go.receiver"),
 		require("cthemen.overrides.go.keywords"),
+		require("cthemen.overrides.go.escapes"),
 	})
 end
 
