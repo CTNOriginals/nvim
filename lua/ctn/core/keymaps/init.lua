@@ -1,4 +1,5 @@
 require("ctn.core.keymaps.navigation")
 require("ctn.core.keymaps.editing")
 require("ctn.core.keymaps.buffers")
+require("ctn.core.keymaps.findfiles")
 require("ctn.core.keymaps.plugins")
