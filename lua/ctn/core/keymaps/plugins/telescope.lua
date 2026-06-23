@@ -36,9 +36,10 @@ end, { desc = "[s]earch [n]eovim files" })
 
 ---@type findFilesArgs[]
 local findFilesDefaults = {
-	{ field = "follow", value = true, key = "f" },
-	{ field = "hidden", value = true, key = "h" },
-	{ field = "no_ignore", value = true, key = "i" },
+	{ field = "follow", value = false, key = "f" },
+	{ field = "hidden", value = false, key = "h" },
+	{ field = "no_ignore", value = false, key = "i" },
+	{ field = "no_ignore_parent", value = false, key = "p" },
 }
 
 ---@type telescope.builtin.find_files.opts
@@ -46,6 +47,8 @@ local findFilesOpts = {
 	bufnr = 0,
 	winnr = 0,
 }
+
+findFilesOpts.hidden = false
 
 local findFileArgsSubmited = false
 
@@ -56,32 +59,35 @@ end, { desc = "[s]earch [c]ustom" })
 vim.keymap.set("n", "<leader>sc<cr>", function()
 	findFileArgsSubmited = true
 end, { desc = "submit" })
+vim.keymap.set("n", "<leader>sc<esc>", function()
+	findFileArgsSubmited = true
+end, { desc = "cancel" })
 
-local findCustomKeys = "<leader>sc"
----@param arg findFilesArgs
-local function executeFindFileArg(arg)
-	-- local triggerKeys = vim.api.nvim_replace_termcodes(findCustomKeys, false, false, true)
-	-- vim.api.nvim_feedkeys(vim.keycode(triggerKeys), "n", false)
-	-- vim.fn.feedkeys(vim.keycode(triggerKeys), "n")
-	findFilesOpts[arg.field] = arg.value
-	vim.defer_fn(function()
-		vim.fn.feedkeys(vim.keycode(findCustomKeys), "m")
-	end, 100)
-end
+local whichkey = require("which-key")
 
 for _, arg in ipairs(findFilesDefaults) do
-	-- vim.keymap.set("n", "<leader>sc" .. arg.key, "<leader>sc")
-
-	-- vim.keymap.set("n", "<leader>sc" .. arg.key, function()
-	-- 	executeFindFileArg(arg)
-	-- end, { desc = arg.field .. ": " .. tostring(arg.value) })
-	vim.keymap.set("n", "<leader>sc" .. arg.key, "<leader>sc", {
+	vim.keymap.set("n", "<leader>sc" .. arg.key, "", {
 		desc = arg.field .. ": " .. tostring(arg.value),
 		callback = function()
-			require("which-key").add()
+			findFilesOpts[arg.field] = not findFilesOpts[arg.field] or arg.value
+
+			local current = ""
+			for _, arg2 in ipairs(findFilesDefaults) do
+				current = current .. arg2.field .. ": " .. tostring(findFilesOpts[arg2.field]) .. ", "
+				whichkey.add()
+			end
+
+			print(current)
+			whichkey.show("<leader>sc")
 		end,
 	})
+
+	whichkey.add("")
 end
+
+vim.defer_fn(function()
+	whichkey.show("<leader>sc")
+end, 300)
 
 local function prototyper()
 	-- local path = getPath()
