@@ -1,7 +1,11 @@
 #!/bin/zsh
 config_dir="$HOME/.config/nvim"
-target_dir="${0:A:h}"
+target_dir="${1:-$(pwd)}"
 run_id="auto-nvim-$$"
+
+echo config $config_dir
+echo target $target_dir
+echo runid $run_id
 
 (
   while IFS= read -r event; do
