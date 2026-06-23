@@ -1,3 +1,4 @@
 [submodule "lua/findfiles.nvim"]
 	path = lua/findfiles.nvim
 	url = git@github.com:CTNOriginals/findfiles.nvim.git
+	branch = main
