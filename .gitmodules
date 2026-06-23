@@ -1,0 +1,3 @@
+[submodule "lua/ctn-findfiles.nvim"]
+	path = lua/ctn-findfiles.nvim
+	url = git@github.com:CTNOriginals/ctn-findfiles.nvim.git
