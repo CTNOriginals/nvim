@@ -12,6 +12,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
 
+require("cthemen")
+
 require("lazy").setup({
 	{ import = "ctn.plugins" },
 }, {
@@ -35,4 +37,4 @@ require("lazy").setup({
 })
 
 require("ctn")
-require("cthemen")
+require("findfiles")
