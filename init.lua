@@ -37,4 +37,7 @@ require("lazy").setup({
 })
 
 require("ctn")
-require("findfiles")
+-- require("findfiles")
+require("findfiles").setup({
+	key = "<leader>sc",
+})
