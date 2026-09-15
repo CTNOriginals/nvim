@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!-- NOTE: example HTML file for syntax highlighting -->
+<!-- TODO: add more sections before release -->
+<html lang="en" data-theme="dark" data-tracking-enabled>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Demo &amp; reference page" />
+		<title>Site &lt;Title&gt; &mdash; Home</title>
+		<link rel="stylesheet" href="/assets/app.css" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<style>
+			:root {
+				--accent: #4f9;
+				--spacing: 1rem;
+			}
+
+			body {
+				margin: 0;
+				font-family: sans-serif;
+			}
+		</style>
+	</head>
+	<body>
+		<header id="top" class="site-header" role="banner">
+			<nav aria-label="primary navigation" class="navbar">
+				<a class="brand" href="/">Acme</a>
+				<ul>
+					<li><a href="/features">Features</a></li>
+					<li><a href="/pricing">Pricing</a></li>
+					<li><a href="/about" target="_blank" rel="noopener">About</a></li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main>
+			<section class="hero" aria-labelledby="hero-title">
+				<h1 id="hero-title">Welcome to Acme</h1>
+				<p>A tiny demo page built to exercise every kind of <em>tag</em> and <strong>attribute</strong>.</p>
+				<a href="/signup" class="btn btn--primary">Get started</a>
+			</section>
+
+			<section class="features-grid">
+				<article class="card">
+					<h2>Fast &amp; reliable</h2>
+					<p>HTTP/2, edge caching and a 99.99&#37; uptime SLA.</p>
+				</article>
+				<article class="card">
+					<h2>Open source</h2>
+					<p>Licensed under the <code>MIT</code> license on <a href="https://github.com/">GitHub</a>.</p>
+				</article>
+				<article class="card">
+					<h2>Extensible</h2>
+					<p>Plugins include <code>&lt;slot&gt;</code>, custom elements and more.</p>
+				</article>
+			</section>
+
+			<section id="pricing">
+				<h2>Pricing</h2>
+				<table class="price-table">
+					<thead>
+						<tr>
+							<th scope="col">Plan</th>
+							<th scope="col">Price</th>
+							<th scope="col">Feature</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Starter</td>
+							<td>&#36;9 / mo</td>
+							<td>1 project</td>
+						</tr>
+						<tr>
+							<td>Pro</td>
+							<td>&#36;29 / mo</td>
+							<td>Unlimited</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="2">Prices in USD</td>
+							<td>+tax</td>
+						</tr>
+					</tfoot>
+				</table>
+			</section>
+
+			<section id="contact">
+				<h2>Contact us</h2>
+				<form action="/submit" method="POST" enctype="multipart/form-data" novalidate>
+					<label for="name">Name</label>
+					<input type="text" id="name" name="name" placeholder="Jane Doe" required />
+
+					<label for="email">Email</label>
+					<input type="email" id="email" name="email" inputmode="email" autocomplete="email" required />
+
+					<label for="plan">Plan</label>
+					<select id="plan" name="plan">
+						<optgroup label="Personal">
+							<option value="starter">Starter</option>
+							<option value="pro" selected>Pro</option>
+						</optgroup>
+						<optgroup label="Business">
+							<option value="enterprise">Enterprise</option>
+						</optgroup>
+					</select>
+
+					<label for="message">Message</label>
+					<textarea id="message" name="message" rows="4" cols="40" maxlength="500">
+default text
+with a newline
+					</textarea>
+
+					<fieldset>
+						<legend>Preferences</legend>
+						<input type="checkbox" id="newsletter" name="newsletter" checked />
+						<label for="newsletter">Subscribe</label>
+						<input type="radio" id="monthly" name="billing" value="monthly" checked />
+						<label for="monthly">Monthly</label>
+						<input type="radio" id="yearly" name="billing" value="yearly" />
+						<label for="yearly">Yearly</label>
+					</fieldset>
+
+					<input type="hidden" name="token" value="abc123" />
+					<button type="submit" class="btn btn--primary">Send</button>
+					<button type="reset" disabled>Reset</button>
+				</form>
+			</section>
+
+			<section>
+				<h2>Media &amp; embeds</h2>
+				<figure>
+					<img src="/img/team.jpg" alt="The Acme team" width="640" height="360" loading="lazy" />
+					<figcaption>Our team at work</figcaption>
+				</figure>
+
+				<video controls preload="metadata" poster="/img/poster.png">
+					<source src="/media/intro.webm" type="video/webm" />
+					<source src="/media/intro.mp4" type="video/mp4" />
+					<p>Your browser does not support embedded video.</p>
+				</video>
+
+				<audio controls src="/media/loop.mp3"></audio>
+
+				<iframe
+					src="https://player.example.org/embed/abc"
+					title="Embedded player"
+					allowfullscreen
+					frameborder="0"
+				></iframe>
+
+				<details open>
+					<summary>Advanced options</summary>
+					<p>Content hidden behind the native disclosure widget.</p>
+				</details>
+			</section>
+
+			<section>
+				<h2>Lists</h2>
+				<ol type="i" start="3">
+					<li>First ordered item</li>
+					<li>Second ordered item</li>
+				</ol>
+				<ul class="tags">
+					<li data-tag="html">HTML</li>
+					<li data-tag="css">CSS</li>
+					<li data-tag="js">JavaScript</li>
+				</ul>
+				<dl>
+					<dt>HTML</dt>
+					<dd>HyperText Markup Language</dd>
+					<dt>CSS</dt>
+					<dd>Cascading Style Sheets</dd>
+				</dl>
+			</section>
+
+			<section>
+				<h2>Code sample</h2>
+				<pre><code>&lt;div class="example"&gt;
+  &lt;p&gt;escaped markup&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+			</section>
+
+			<aside>
+				<blockquote cite="https://example.org/quote">
+					<p>Less is more &hellip; except when it is not.</p>
+					<footer>- Someone, <time datetime="2026-01-01">2026</time></footer>
+				</blockquote>
+			</aside>
+		</main>
+
+		<footer class="site-footer">
+			<p>&copy; 2026 Acme Inc. All rights reserved.</p>
+			<address>
+				Written by <a href="mailto:hi@example.org">hi&commat;example.org</a>.
+			</address>
+		</footer>
+
+		<script src="/assets/app.js" type="module" defer></script>
+		<script>
+			// inline script
+			const el = document.querySelector(".hero");
+			el.addEventListener("click", () => {
+				console.log("clicked");
+			});
+		</script>
+	</body>
+</html>
