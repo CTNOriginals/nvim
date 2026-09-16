@@ -46,8 +46,8 @@ return {
 			browser_data_dir = "~/.cache/strudel-nvim/",
 			-- Path to a (chromium-based) browser executable of choice
 			-- (optional, default: nil)
-			-- browser_exec_path = "/usr/bin/vivaldi",
-			browser_exec_path = nil,
+			browser_exec_path = "/usr/bin/vivaldi",
+			-- browser_exec_path = nil,
 			-- Custom URL for Strudel
 			-- (optional, default: "https://cold.strudel.cc/")
 			strudel_url = "https://cold.strudel.cc/",
