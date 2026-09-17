@@ -6,7 +6,7 @@ return {
 	config = function()
 		require("livepreview.config").set({
 			port = 5500,
-			browser = "default",
+			browser = "firefox",
 			dynamic_root = false,
 			sync_scroll = true,
 			picker = "",
