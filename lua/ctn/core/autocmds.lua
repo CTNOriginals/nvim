@@ -5,11 +5,37 @@ vim.filetype.add({
 	},
 })
 
+_G.ConveycodeIndent = function(lnum)
+	local prevlnum = vim.fn.prevnonblank(lnum - 1)
+	if prevlnum == 0 then
+		return 0
+	end
+
+	local sw = vim.fn.shiftwidth()
+	local indent = vim.fn.indent(prevlnum)
+
+	local prevline = vim.fn.getline(prevlnum):gsub("%s+$", "")
+	local lastchar = prevline:sub(-1)
+	if lastchar == "{" or lastchar == "(" or lastchar == "[" then
+		indent = indent + sw
+	end
+
+	local curline = vim.fn.getline(lnum):gsub("^%s+", "")
+	local firstchar = curline:sub(1, 1)
+	if firstchar == "}" or firstchar == ")" or firstchar == "]" then
+		indent = indent - sw
+	end
+
+	return indent
+end
+
 vim.api.nvim_create_autocmd("FileType", {
-	desc = "Set commentstring for conveycode",
+	desc = "Set commentstring and block-scope indenting for conveycode",
 	pattern = "conveycode",
 	callback = function()
 		vim.bo.commentstring = "// %s"
+		vim.bo.indentexpr = "v:lua.ConveycodeIndent(v:lnum)"
+		vim.bo.indentkeys = "0{,0},0),0],!^F,o,O"
 	end,
 })
 
