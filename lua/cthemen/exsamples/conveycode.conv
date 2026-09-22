@@ -11,7 +11,11 @@ func func1() {
 		$print("func2: ", num)
 	}
 
-	func2(x)
+	if (@links > 2) {
+		func2(x)
+	} else {
+		func2(func3)
+	}
 }
 
 func1()

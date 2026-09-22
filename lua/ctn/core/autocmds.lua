@@ -1,3 +1,18 @@
+vim.filetype.add({
+	extension = {
+		conv = "conveycode",
+		mlog = "mlog",
+	},
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	desc = "Set commentstring for conveycode",
+	pattern = "conveycode",
+	callback = function()
+		vim.bo.commentstring = "// %s"
+	end,
+})
+
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
