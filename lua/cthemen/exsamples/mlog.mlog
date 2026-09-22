@@ -8,7 +8,7 @@ set method2_return 8
 set @counter method2_caller-adress
 method3_method4:
 print "func2: "
-print method4_num
+print method4_fn
 set @counter method4_caller-adress
 global0_method3:
 print "func1"
@@ -16,13 +16,13 @@ set method2_caller-adress 13
 jump global0_method2 always
 set method3_x method2_return
 jump method3_statement6 greaterThan @links 2
-set method4_num method2_return
+set method4_fn method2_return
 set method4_caller-adress 18
 jump method3_method4 always
 jump method3_statement5_exit always 
 
 method3_statement6:
-set method4_num method3_x
+set method4_fn method3_x
 set method4_caller-adress 22
 jump method3_method4 always
 method3_statement5_exit:

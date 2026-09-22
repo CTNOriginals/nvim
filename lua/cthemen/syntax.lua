@@ -16,6 +16,8 @@ function M.setup(c)
 
 	hl("Identifier", { fg = c.namespace })
 	hl("Function", { fg = c.function_fg })
+	hl("Variable", { fg = c.variable })
+	hl("Builtin", { fg = c.builtin })
 
 	hl("Statement", { fg = c.keyword_flow, bold = true })
 	hl("Conditional", { fg = c.keyword_flow, bold = true })

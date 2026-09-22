@@ -29,8 +29,12 @@ syn match   conveycodeNumber      "\%(^\|[^[:alnum:]_]\)\@<=[+-]\=\d\+\%(\.\d\+\
 
 " $command, @constant, #link prefixes
 syn match   conveycodeCommand     "\$\w\+"
-syn match   conveycodeConstant    "@[[:alnum:]_-]\+"
+syn match   conveycodeBuiltin    "@[[:alnum:]_-]\+"
 syn match   conveycodeLink        "#\w\+"
+
+" Generic identifiers (variable names); the more specific function match
+" below is defined after this one so it wins where they overlap
+syn match   conveycodeIdentifier  "\h\w*"
 
 " Function name in `func name(` and in call position `name(`
 syn match   conveycodeFunction    "\h\w*\ze\s*("
@@ -42,14 +46,15 @@ hi def link conveycodeKeyword     Keyword
 hi def link conveycodeConditional Conditional
 hi def link conveycodeStatement   Statement
 hi def link conveycodeBoolean     Boolean
-hi def link conveycodeNull        Constant
+hi def link conveycodeNull        Boolean
 hi def link conveycodeComment     Comment
 hi def link conveycodeString      String
 hi def link conveycodeEscape      Special
 hi def link conveycodeNumber      Number
-hi def link conveycodeCommand     Function
-hi def link conveycodeConstant    Constant
+hi def link conveycodeCommand     Constant
+hi def link conveycodeBuiltin     Builtin
 hi def link conveycodeLink        Identifier
+hi def link conveycodeIdentifier  Variable
 hi def link conveycodeFunction    Function
 hi def link conveycodeOperator    Operator
 
