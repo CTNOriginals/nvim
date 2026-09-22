@@ -41,12 +41,21 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.o.autoread = true
 
-vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
-	desc = "Reload buffers changed on disk (e.g. by an external compiler)",
+-- CursorHold only fires once per idle period (by design), so it goes silent
+-- if the window sits unfocused/untouched. A plain timer keeps checking
+-- regardless of focus or input.
+vim.uv.new_timer():start(
+	1000,
+	1000,
+	vim.schedule_wrap(function()
+		vim.cmd("checktime")
+	end)
+)
+
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+	desc = "Reload buffers changed on disk immediately on refocus",
 	callback = function()
-		if vim.fn.mode() ~= "c" then
-			vim.cmd("checktime")
-		end
+		vim.cmd("checktime")
 	end,
 })
 
