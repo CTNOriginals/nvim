@@ -49,7 +49,7 @@ hi def link conveycodeBoolean     Boolean
 hi def link conveycodeNull        Boolean
 hi def link conveycodeComment     Comment
 hi def link conveycodeString      String
-hi def link conveycodeEscape      Special
+hi def link conveycodeEscape      SpecialChar
 hi def link conveycodeNumber      Number
 hi def link conveycodeCommand     Constant
 hi def link conveycodeBuiltin     Builtin

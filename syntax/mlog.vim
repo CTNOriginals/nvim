@@ -11,7 +11,7 @@ syn case match
 syn keyword mlogComparator equal notEqual lessThan lessThanEq greaterThan greaterThanEq strictEqual always
 
 " Booleans
-syn keyword mlogBoolean true false
+syn keyword mlogBoolean true false null
 
 " Generic identifiers (variable/register names); the more specific rules
 " below (assignment target, label, opcode) are defined after this one so
@@ -22,7 +22,8 @@ syn match mlogIdentifier "\h[[:alnum:]_-]*"
 syn match mlogBuiltin "@[[:alnum:]_-]\+"
 
 " Strings (double-quoted only; no comment syntax in mlog)
-syn region mlogString  start=+"+ skip=+\\\\\|\\"+ end=+"+
+syn match  mlogEscape  display contained "\\."
+syn region mlogString  start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=mlogEscape
 
 " Numbers
 syn match mlogNumber   "\<0[xX][0-9a-fA-F]\+\>"
@@ -43,10 +44,11 @@ hi def link mlogComparator    Conditional
 hi def link mlogBoolean       Boolean
 hi def link mlogIdentifier    Variable
 hi def link mlogBuiltin       Builtin
+hi def link mlogEscape        SpecialChar
 hi def link mlogString        String
 hi def link mlogNumber        Number
 hi def link mlogAssignTarget  Identifier
 hi def link mlogLabel         Label
-hi def link mlogOpcode        Keyword
+hi def link mlogOpcode        StorageClass
 
 let b:current_syntax = "mlog"
