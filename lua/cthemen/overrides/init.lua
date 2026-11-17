@@ -41,8 +41,9 @@ local function setup_language(pattern, lang, lsp_overrides, overrides)
 			end
 
 			update()
-			vim.api.nvim_create_autocmd("TextChanged", { buffer = bufnr, callback = update })
-			vim.api.nvim_create_autocmd("TextChangedI", { buffer = bufnr, callback = update })
+			-- Per-buffer group so repeated LspAttach (multiple clients, restarts) replaces instead of stacking
+			local group = vim.api.nvim_create_augroup("cthemen-overrides-" .. bufnr, { clear = true })
+			vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, { group = group, buffer = bufnr, callback = update })
 		end,
 	})
 end

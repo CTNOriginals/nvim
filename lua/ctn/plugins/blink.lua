@@ -22,7 +22,7 @@ return {
 			providers = { lazydev = { module = "lazydev.integrations.blink", score_offset = 100 } },
 		},
 		snippets = { preset = "luasnip" },
-		fuzzy = { implementation = "lua" },
+		fuzzy = { implementation = "prefer_rust_with_warning" },
 		signature = { enabled = true },
 	},
 }

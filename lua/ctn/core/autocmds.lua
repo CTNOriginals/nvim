@@ -43,12 +43,19 @@ vim.o.autoread = true
 
 -- CursorHold only fires once per idle period (by design), so it goes silent
 -- if the window sits unfocused/untouched. A plain timer keeps checking
--- regardless of focus or input.
+-- regardless of focus or input. Only .mlog buffers are polled.
 vim.uv.new_timer():start(
 	1000,
 	1000,
 	vim.schedule_wrap(function()
-		vim.cmd("checktime")
+		if vim.fn.getcmdwintype() ~= "" then
+			return
+		end
+		for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+			if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].filetype == "mlog" then
+				vim.cmd("checktime " .. buf)
+			end
+		end
 	end)
 )
 
@@ -64,14 +71,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
 	callback = function()
 		vim.hl.on_yank()
-	end,
-})
-
-vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Store yanked text in system clipboard",
-	group = vim.api.nvim_create_augroup("yank-to-clipboard", { clear = true }),
-	callback = function()
-		vim.cmd("let @+=@0")
 	end,
 })
 

@@ -24,15 +24,13 @@ return {
 			"saghen/blink.cmp",
 		},
 		config = function()
-			local capabilities = require("blink.cmp").get_lsp_capabilities()
-
+			-- Runtime version is left to lazydev (nvim config) or .luarc.json (e.g. Factorio mods)
 			local servers = {
 				gopls = {},
 				ts_ls = {},
 				lua_ls = {
 					settings = {
 						Lua = {
-							runtime = { version = "LuaJIT" },
 							completion = { callSnippet = "Replace" },
 						},
 					},
@@ -43,17 +41,13 @@ return {
 			vim.list_extend(ensure_installed, { "stylua" })
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-			require("mason-lspconfig").setup({
-				ensure_installed = {},
-				automatic_installation = false,
-				handlers = {
-					function(server_name)
-						local server = servers[server_name] or {}
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
-					end,
-				},
-			})
+			vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities() })
+			for name, server in pairs(servers) do
+				vim.lsp.config(name, server)
+			end
+
+			-- mason-lspconfig v2 calls vim.lsp.enable() for installed servers
+			require("mason-lspconfig").setup({ ensure_installed = {} })
 		end,
 	},
 }
