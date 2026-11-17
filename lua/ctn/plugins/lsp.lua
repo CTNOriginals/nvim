@@ -3,6 +3,11 @@ return {
 		"folke/lazydev.nvim",
 		ft = "lua",
 		opts = {
+			-- Skip projects with their own .luarc.json (e.g. Factorio mods), since
+			-- lazydev's injected settings (ignoreDir "/lua", LuaJIT runtime) break them
+			enabled = function(root_dir)
+				return not vim.uv.fs_stat(root_dir .. "/.luarc.json")
+			end,
 			library = {
 				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 				{ path = "/usr/share/hypr/stubs", words = { "hl%." } },
